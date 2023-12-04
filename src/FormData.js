@@ -4,22 +4,23 @@ function FormData({ handleChange, formInputData, handleSubmit, handleOnRadioChan
         <form className="grid grid-cols-3 gap-4" onSubmit={handleSubmit}>
             <div className="col">
                 <label className="block text-sm font-medium leading-6 text-gray-900">Full Name</label>
-                <input type="text" onChange={handleChange} value={formInputData.fullName} name="fullName" className="block w-full rounded-sm border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#d3d3d3] sm:text-sm sm:leading-6" placeholder="Full Name" required="required" />
+                <input type="text" onChange={handleChange} value={formInputData.fullName} name="fullName" className="block w-full rounded-sm border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#d3d3d3] sm:text-sm sm:leading-6" placeholder="Full Name" />
                 <p className="error-box"><span>{FormErrorsData.fullName}</span></p>
             </div>
             <div className="col">
                 <label className="block text-sm font-medium leading-6 text-gray-900">Email Address</label>
-                <input type="email" onChange={handleChange} value={formInputData.emailAddress} name="emailAddress" className="block w-full rounded-sm border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#d3d3d3] sm:text-sm sm:leading-6" placeholder="Email Address" autoComplete="email" required />
+                <input type="text" onChange={handleChange} value={formInputData.emailAddress} name="emailAddress" className="block w-full rounded-sm border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#d3d3d3] sm:text-sm sm:leading-6" placeholder="Email Address" />
                 <p className="error-box"><span>{FormErrorsData.emailAddress}</span></p>
             </div>
             <div className="col">
                 <label className="block text-sm font-medium leading-6 text-gray-900">Salary</label>
-                <input type="number" onChange={handleChange} value={formInputData.salary} name="salary" className="block w-full rounded-sm border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#d3d3d3] sm:text-sm sm:leading-6" placeholder="Salary" />
+                <input type="text" onChange={handleChange} value={formInputData.salary} name="salary" className="block w-full rounded-sm border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#d3d3d3] sm:text-sm sm:leading-6" placeholder="Salary" />
                 <p className="error-box"><span>{FormErrorsData.salary}</span></p>
             </div>
             <div className="col">
                 <label className="block text-sm font-medium leading-6 text-gray-900">Description</label>
                 <textarea onChange={handleChange} value={formInputData.description} name="description" className="block w-full rounded-sm border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#d3d3d3] sm:text-sm sm:leading-6" placeholder="Description" />
+                <p className="error-box"><span>{FormErrorsData.description}</span></p>
             </div>
             <div className="col">
                 <label className="block text-sm font-medium leading-6 text-gray-900">Location</label>
@@ -29,8 +30,9 @@ function FormData({ handleChange, formInputData, handleSubmit, handleOnRadioChan
                     <option>Canada</option>
                     <option>Mexico</option>
                 </select>
+                <p className="error-box"><span>{FormErrorsData.location}</span></p>
             </div>
-            <fieldset className="col-span-full">
+            <fieldset className="col-span-full relative">
               <legend className="text-sm font-semibold leading-6 text-gray-900">Push Notifications</legend>
               <p className="mt-1 text-sm leading-6 text-gray-600">These are delivered via SMS to your mobile phone.</p>
               <div className="mt-3">
@@ -77,6 +79,7 @@ function FormData({ handleChange, formInputData, handleSubmit, handleOnRadioChan
                   </label>
                 </div>
               </div>
+              <p className="error-box"><span>{FormErrorsData.pushnotifications}</span></p>
             </fieldset>
             <fieldset className="col-span-full">
               <legend className="text-sm font-semibold leading-6 text-gray-900">Favourite Food</legend>
@@ -144,7 +147,7 @@ function FormData({ handleChange, formInputData, handleSubmit, handleOnRadioChan
               </div>
             </fieldset>
             <div className="col-span-full">
-                <button type="submit" onClick={handleSubmit} className="mt-2 rounded-sm bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Submit </button>
+                <button type="submit" className="mt-2 rounded-sm bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Submit </button>
             </div>
         </form>
 

@@ -16,7 +16,6 @@ function App() {
       location: '',
       pushnotifications: '',
       favfood: [ ],
-      uploadImage: '',
     }
   );
 
@@ -33,14 +32,11 @@ function App() {
     //console.log(formInputData);
    }
 
-   const onUploadImg = (evnt) =>{
-    //console.log(evnt.target.files[0]);
-    setformInputData({...formInputData, uploadImage:evnt.target.files[0].name})
-   }
 
 
   const handleChange = (evnt) => {
-    const newInput = (data) => ({ ...data, [evnt.target.name]: evnt.target.value })
+    const { name, value } = evnt.target;
+    const newInput = (data) => ({ ...data, [name]: value })
     setformInputData(newInput)
   }
 
@@ -72,6 +68,7 @@ useEffect(() => {
 const validate = (values) => {
   const errors = {};
   const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
+  const numberRegex = /^\d+$/;
   if (!values.fullName) {
     errors.fullName = "Name is required!";
   }
@@ -82,7 +79,20 @@ const validate = (values) => {
   }
   if (!values.salary) {
     errors.salary = "Salary is required";
+  } else if (!numberRegex.test(values.salary)) {
+    errors.salary = "This is not a valid email format!";
+  }
+  if (!values.description) {
+    errors.description = "Description is required";
   } 
+  if (!values.location) {
+    errors.location = "Location is required";
+  } 
+
+
+  if (!values.pushnotifications) {
+    errors.pushnotifications = "Push Notifications is required";
+  }
   return errors;
 };
 
@@ -103,13 +113,12 @@ const validate = (values) => {
       const newFormData = {...formInputData, pushnotifications:getRealPushnotification(formInputData.pushnotifications), favfood:formInputData.favfood.toString().replaceAll('_',' ')}
       const newData = (data) => ([...data, newFormData])
       setTableData(newData);
-      const emptyInput = { fullName: '', emailAddress: '', salary: '', description: '', location: '', pushnotifications: '', favfood: '', uploadImage: ''}
+      const emptyInput = { fullName: '', emailAddress: '', salary: '', description: '', location: '', pushnotifications: '', favfood: '',}
       setformInputData(emptyInput)
 
       unCheck();
     }
    
-    
 
   }
 
@@ -118,7 +127,7 @@ const validate = (values) => {
   return (
     <div className='max-w-7xl mx-auto pt-5 pb-5'>
       <div className=" p-4 border border-[#d1d5db] rounded-md">
-        <FormData handleChange={handleChange} formInputData={formInputData} handleSubmit={handleSubmit} handleOnRadioChange={onChangeRadioButton} handleOnCheckBoxChange={onChangeCheckBox} handleUploadImg={onUploadImg} FormErrorsData={formErrors} />
+        <FormData handleChange={handleChange} formInputData={formInputData} handleSubmit={handleSubmit} handleOnRadioChange={onChangeRadioButton} handleOnCheckBoxChange={onChangeCheckBox} FormErrorsData={formErrors} />
       </div>
       <div className="">
         <Table tableData={tableData} />
