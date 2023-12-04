@@ -1,18 +1,21 @@
-function FormData({ handleChange, formInputData, handleSubmit, handleOnRadioChange, handleOnCheckBoxChange, handleUploadImg }) {
+function FormData({ handleChange, formInputData, handleSubmit, handleOnRadioChange, handleOnCheckBoxChange, FormErrorsData}) {
 
     return (
-        <form className="grid grid-cols-3 gap-4">
+        <form className="grid grid-cols-3 gap-4" onSubmit={handleSubmit}>
             <div className="col">
                 <label className="block text-sm font-medium leading-6 text-gray-900">Full Name</label>
                 <input type="text" onChange={handleChange} value={formInputData.fullName} name="fullName" className="block w-full rounded-sm border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#d3d3d3] sm:text-sm sm:leading-6" placeholder="Full Name" required="required" />
+                <p className="error-box"><span>{FormErrorsData.fullName}</span></p>
             </div>
             <div className="col">
                 <label className="block text-sm font-medium leading-6 text-gray-900">Email Address</label>
                 <input type="email" onChange={handleChange} value={formInputData.emailAddress} name="emailAddress" className="block w-full rounded-sm border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#d3d3d3] sm:text-sm sm:leading-6" placeholder="Email Address" autoComplete="email" required />
+                <p className="error-box"><span>{FormErrorsData.emailAddress}</span></p>
             </div>
             <div className="col">
                 <label className="block text-sm font-medium leading-6 text-gray-900">Salary</label>
                 <input type="number" onChange={handleChange} value={formInputData.salary} name="salary" className="block w-full rounded-sm border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#d3d3d3] sm:text-sm sm:leading-6" placeholder="Salary" />
+                <p className="error-box"><span>{FormErrorsData.salary}</span></p>
             </div>
             <div className="col">
                 <label className="block text-sm font-medium leading-6 text-gray-900">Description</label>

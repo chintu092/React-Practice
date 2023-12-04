@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 import './App.css';
-import React, { useState } from 'react';
+import React, { useState, useEffect  } from 'react';
 import FormData from './FormData';
 import Table from './Table';
 
@@ -19,6 +19,9 @@ function App() {
       uploadImage: '',
     }
   );
+
+  const [formErrors, setFormErrors] = useState({});
+  const [isSubmit, setIsSubmit] = useState(false);
 
   //For Radio Button
   const onChangeRadioButton = (evnt) =>{
@@ -58,10 +61,39 @@ function App() {
    }   
 }
 
+useEffect(() => {
+  console.log(formErrors);
+  if (Object.keys(formErrors).length === 0 && isSubmit) {
+    console.log(formInputData);
+  }
+}, [formErrors]);
+
+
+const validate = (values) => {
+  const errors = {};
+  const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
+  if (!values.fullName) {
+    errors.fullName = "Name is required!";
+  }
+  if (!values.emailAddress) {
+    errors.emailAddress = "Email is required!";
+  } else if (!regex.test(values.emailAddress)) {
+    errors.emailAddress = "This is not a valid email format!";
+  }
+  if (!values.salary) {
+    errors.salary = "Salary is required";
+  } 
+  return errors;
+};
+
   const handleSubmit = (evnt) => {
     evnt.preventDefault();
+
+    setFormErrors(validate(formInputData));
+    setIsSubmit(true);
+
     const checkEmptyInput = !Object.values(formInputData).every(res => res === "")
-    if (checkEmptyInput) {
+    if (checkEmptyInput && Object.keys(formErrors).length === 0) {
       //console.log(formInputData);
       //const splitvariable = 'Same_as_email';
       //console.log(splitvariable.replaceAll('_',' ')); //using this we can remove _ in radio value
@@ -73,19 +105,11 @@ function App() {
       setTableData(newData);
       const emptyInput = { fullName: '', emailAddress: '', salary: '', description: '', location: '', pushnotifications: '', favfood: '', uploadImage: ''}
       setformInputData(emptyInput)
-    }
-    unCheck();
 
-    const data = {
-        fullName: formInputData.fullName,
-        emailAddress: formInputData.emailAddress,
-        salary: formInputData.salary,
-        description: formInputData.description,
-        location: formInputData.location,
-        pushnotifications: formInputData.pushnotifications,
-        favfood: formInputData.favfood,
+      unCheck();
     }
-    console.log(data);
+   
+    
 
   }
 
@@ -94,7 +118,7 @@ function App() {
   return (
     <div className='max-w-7xl mx-auto pt-5 pb-5'>
       <div className=" p-4 border border-[#d1d5db] rounded-md">
-        <FormData handleChange={handleChange} formInputData={formInputData} handleSubmit={handleSubmit} handleOnRadioChange={onChangeRadioButton} handleOnCheckBoxChange={onChangeCheckBox} handleUploadImg={onUploadImg} />
+        <FormData handleChange={handleChange} formInputData={formInputData} handleSubmit={handleSubmit} handleOnRadioChange={onChangeRadioButton} handleOnCheckBoxChange={onChangeCheckBox} handleUploadImg={onUploadImg} FormErrorsData={formErrors} />
       </div>
       <div className="">
         <Table tableData={tableData} />

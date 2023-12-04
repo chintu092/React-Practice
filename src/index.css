@@ -15,3 +15,24 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.error-box span {
+  background: #f4433624;
+  color: red;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 10px;
+  margin-top: 5px;
+  float: right;
+  position: absolute;
+  right: 4px;
+  top: 24px;
+}
+
+.error-box span:empty{
+  display: none;
+}
+
+.grid .col{
+  position: relative;
+}
