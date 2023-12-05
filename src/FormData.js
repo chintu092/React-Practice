@@ -81,7 +81,7 @@ function FormData({ handleChange, formInputData, handleSubmit, handleOnRadioChan
               </div>
               <p className="error-box"><span>{FormErrorsData.pushnotifications}</span></p>
             </fieldset>
-            <fieldset className="col-span-full">
+            <fieldset className="col-span-full relative">
               <legend className="text-sm font-semibold leading-6 text-gray-900">Favourite Food</legend>
               <div className="mt-3">
                 <div className="flex items-center gap-x-3">
@@ -145,6 +145,7 @@ function FormData({ handleChange, formInputData, handleSubmit, handleOnRadioChan
                 <input type="file" name="uploadImage" onChange={handleUploadImg} className="block w-full rounded-sm border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#d3d3d3] sm:text-sm sm:leading-6" placeholder="Email Address" autoComplete="email" required />
             </div> */}
               </div>
+              <p className="error-box"><span>{FormErrorsData.favfood}</span></p>
             </fieldset>
             <div className="col-span-full">
                 <button type="submit" className="mt-2 rounded-sm bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Submit </button>
