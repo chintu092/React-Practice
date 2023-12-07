@@ -49,7 +49,7 @@ function App() {
       errors.pushnotifications = "Push Notifications is required";
     }
     if (values.favfood.length === 0) {
-      errors.favfood = "Favfood is required";
+      errors.favfood = "Favourite Food is required";
     }
     return errors;
   };
