@@ -1,15 +1,21 @@
-function FormData({ handleChange, formInputData, handleSubmit, handleOnRadioChange, handleOnCheckBoxChange, FormErrorsData}) {
+import React, { useState } from 'react';
 
+function FormData({ handleChange, formInputData, handleSubmit, handleOnRadioChange, handleOnCheckBoxChange, FormErrorsData}) {
+  const [focused, setFocused] = useState(false);
+
+  const handleFocus = (e) => {
+    setFocused(true);
+  };
     return (
-        <form className="grid grid-cols-3 gap-4" onSubmit={handleSubmit}>
+        <form className="grid grid-cols-3 gap-4" noValidate autoComplete="off">
             <div className="col">
                 <label className="block text-sm font-medium leading-6 text-gray-900">Full Name</label>
-                <input type="text" onChange={handleChange} value={formInputData.fullName} name="fullName" className="block w-full rounded-sm border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#d3d3d3] sm:text-sm sm:leading-6" placeholder="Full Name" />
+                <input type="text" onBlur={handleFocus} focused={focused.toString()} onChange={handleChange} value={formInputData.fullName} name="fullName" className="block w-full rounded-sm border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#d3d3d3] sm:text-sm sm:leading-6" placeholder="Full Name" />
                 <p className="error-box"><span>{FormErrorsData.fullName}</span></p>
             </div>
             <div className="col">
                 <label className="block text-sm font-medium leading-6 text-gray-900">Email Address</label>
-                <input type="text" onChange={handleChange} value={formInputData.emailAddress} name="emailAddress" className="block w-full rounded-sm border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#d3d3d3] sm:text-sm sm:leading-6" placeholder="Email Address" />
+                <input type="text" onBlur={handleFocus} focused={focused.toString()} onChange={handleChange} value={formInputData.emailAddress} name="emailAddress" className="block w-full rounded-sm border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#d3d3d3] sm:text-sm sm:leading-6" placeholder="Email Address" />
                 <p className="error-box"><span>{FormErrorsData.emailAddress}</span></p>
             </div>
             <div className="col">
@@ -81,7 +87,7 @@ function FormData({ handleChange, formInputData, handleSubmit, handleOnRadioChan
               </div>
               <p className="error-box"><span>{FormErrorsData.pushnotifications}</span></p>
             </fieldset>
-            <fieldset className="col-span-full">
+            <fieldset className="col-span-full relative">
               <legend className="text-sm font-semibold leading-6 text-gray-900">Favourite Food</legend>
               <div className="mt-3">
                 <div className="flex items-center gap-x-3">
@@ -145,9 +151,10 @@ function FormData({ handleChange, formInputData, handleSubmit, handleOnRadioChan
                 <input type="file" name="uploadImage" onChange={handleUploadImg} className="block w-full rounded-sm border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#d3d3d3] sm:text-sm sm:leading-6" placeholder="Email Address" autoComplete="email" required />
             </div> */}
               </div>
+              <p className="error-box"><span>{FormErrorsData.favfood}</span></p>
             </fieldset>
             <div className="col-span-full">
-                <button type="submit" className="mt-2 rounded-sm bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Submit </button>
+                <button type="submit" onClick={handleSubmit} className="mt-2 rounded-sm bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Submit </button>
             </div>
         </form>
 
